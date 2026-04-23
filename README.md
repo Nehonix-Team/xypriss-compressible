@@ -26,9 +26,9 @@ xfpm install xypriss-compressible
 ```typescript
 import compressible from "xypriss-compressible";
 
-compressible("text/html");                 // → true
-compressible("image/png");                 // → false
-compressible("application/x-custom");      // → undefined
+compressible("text/html"); // → true
+compressible("image/png"); // → false
+compressible("application/x-custom"); // → undefined
 ```
 
 ### With a full `Content-Type` header value
@@ -36,14 +36,14 @@ compressible("application/x-custom");      // → undefined
 Parameters like `charset` are automatically stripped before the lookup.
 
 ```typescript
-compressible("text/html; charset=utf-8");         // → true
-compressible("application/json; charset=utf-8");  // → true
+compressible("text/html; charset=utf-8"); // → true
+compressible("application/json; charset=utf-8"); // → true
 ```
 
 ### In middleware
 
 ```typescript
-import vary        from "xypriss-vary";
+import vary from "xypriss-vary";
 import compressible from "xypriss-compressible";
 
 function compressionMiddleware(req, res, next) {
@@ -64,16 +64,16 @@ function compressionMiddleware(req, res, next) {
 
 ### `compressible(type)`
 
-| Parameter | Type     | Description                                          |
-|-----------|----------|------------------------------------------------------|
-| `type`    | `string` | A MIME type or full `Content-Type` header value.     |
+| Parameter | Type     | Description                                      |
+| --------- | -------- | ------------------------------------------------ |
+| `type`    | `string` | A MIME type or full `Content-Type` header value. |
 
 **Returns** `boolean | undefined`:
 
 | Return value | Meaning                                                                 |
-|--------------|-------------------------------------------------------------------------|
+| ------------ | ----------------------------------------------------------------------- |
 | `true`       | The type is compressible.                                               |
-| `false`      | The type is explicitly not compressible, or `type` is not a string.    |
+| `false`      | The type is explicitly not compressible, or `type` is not a string.     |
 | `undefined`  | Compressibility is unknown — treat as "maybe" in your middleware logic. |
 
 The function **never throws**. Non-string inputs return `false`; malformed strings return `undefined`.
@@ -94,18 +94,18 @@ The function **never throws**. Non-string inputs return `false`; malformed strin
 
 ## Common Values
 
-| MIME type                        | Result      |
-|----------------------------------|-------------|
-| `text/html`                      | `true`      |
-| `text/plain`                     | `true`      |
-| `application/json`               | `true`      |
-| `application/vnd.api+json`       | `true`      |
-| `application/xml`                | `true`      |
-| `image/png`                      | `false`     |
-| `image/jpeg`                     | `false`     |
-| `application/octet-stream`       | `false`     |
-| `video/mp4`                      | `false`     |
-| `application/x-custom`           | `undefined` |
+| MIME type                  | Result      |
+| -------------------------- | ----------- |
+| `text/html`                | `true`      |
+| `text/plain`               | `true`      |
+| `application/json`         | `true`      |
+| `application/vnd.api+json` | `true`      |
+| `application/xml`          | `true`      |
+| `image/png`                | `false`     |
+| `image/jpeg`               | `false`     |
+| `application/octet-stream` | `false`     |
+| `video/mp4`                | `false`     |
+| `application/x-custom`     | `undefined` |
 
 ---
 
@@ -118,32 +118,9 @@ The function **never throws**. Non-string inputs return `false`; malformed strin
 
 ---
 
-## Changelog
+## History
 
-### 2.0.0 — 2026 *(Nehonix fork)*
-- Full rewrite in strict TypeScript
-- Internal `MimeDbEntry` interface replaces untyped `Record<string, any>` cast
-- Malformed type strings (no match from `EXTRACT_TYPE_REGEXP`) now return `undefined` instead of `undefined` silently via a falsy branch — behaviour is the same but the intent is explicit
-- JSDoc added to all constants, the function, and the type
-
-### 2.4.0 — 2023-02-23 *(upstream)*
-- Use `mime-db` `~1.52.0`
-
-### 2.3.0 — 2021-02-17 *(upstream)*
-- Use `mime-db` `~1.46.0`
-
-### 2.2.0 — 2020-04-09 *(upstream)*
-- Use `mime-db` `~1.44.0`
-
-### 2.1.0 — 2020-01-05 *(upstream)*
-- Use `mime-db` `~1.43.0`
-
-### 2.0.0 — 2019-04-26 *(upstream)*
-- Drop support for Node.js below `0.6`
-- Use `mime-db` `~1.40.0`
-
-### 1.0.0 — 2014-08-08 *(upstream)*
-- Initial release
+See [HISTORY.md](HISTORY.md) for full release details.
 
 ---
 
