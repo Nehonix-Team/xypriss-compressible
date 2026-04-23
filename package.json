@@ -1,13 +1,13 @@
 {
   "name": "xypriss-compressible",
-  "version": "2.0.18-xypriss",
+  "version": "2.0.19",
   "description": "Compressible Content-Type / mime checking (XyPriss Hardened)",
   "author": "Nehonix Team",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
+    "dist/",
     "LICENSE",
     "README.md"
   ],
@@ -20,6 +20,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "mocha --reporter spec --bail --check-leaks test/"
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "prepublishOnly": "xfpm run build"
   }
 }
